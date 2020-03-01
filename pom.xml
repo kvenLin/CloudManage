@@ -20,6 +20,7 @@
         <module>backend-user</module>
         <module>backend-eureka-server</module>
         <module>backend-practice</module>
+        <module>backend-film</module>
     </modules>
 
     <properties>

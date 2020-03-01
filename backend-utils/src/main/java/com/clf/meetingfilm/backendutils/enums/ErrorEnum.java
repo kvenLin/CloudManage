@@ -14,7 +14,12 @@ public enum  ErrorEnum {
     REQUEST_METHOD_ERROR(550,"不支持%s的请求方式" ),
     BIND_ERROR(511,"参数校验错误:%s"),
     USER_NOT_FUND(501, "用户不存在"),
-    PASSWORD_WRONG(502, "用户密码错误");
+    PASSWORD_WRONG(502, "用户密码错误"),
+    SAVE_FILM_FAILED(503,"添加影片失败"),
+    PARSE_ERROR(504, "时间转换错误"),
+    ROLE_MATCH_ACT_ERROR(505, "演员和角色名数量不匹配"),
+    SAVE_CINEMA_ERROR(506, "添加影院失败"),
+    PAGE_TOO_BIG(507, "nowPage太大了，不支持此处理");
     private Integer code;
     private String msg;
 

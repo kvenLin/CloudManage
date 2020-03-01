@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clf.meetingfilm.backendfilm.dao.MoocFilmActorTDao">
+  <resultMap id="BaseResultMap" type="com.clf.meetingfilm.backendfilm.model.MoocFilmActorT">
+    <id column="UUID" jdbcType="INTEGER" property="uuid" />
+    <result column="film_id" jdbcType="INTEGER" property="filmId" />
+    <result column="actor_id" jdbcType="INTEGER" property="actorId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UUID, film_id, actor_id, role_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mooc_film_actor_t
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mooc_film_actor_t
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="UUID" keyProperty="uuid" parameterType="com.clf.meetingfilm.backendfilm.model.MoocFilmActorT" useGeneratedKeys="true">
+    insert into mooc_film_actor_t (film_id, actor_id, role_name
+      )
+    values (#{filmId,jdbcType=INTEGER}, #{actorId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="UUID" keyProperty="uuid" parameterType="com.clf.meetingfilm.backendfilm.model.MoocFilmActorT" useGeneratedKeys="true">
+    insert into mooc_film_actor_t
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="filmId != null">
+        film_id,
+      </if>
+      <if test="actorId != null">
+        actor_id,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="filmId != null">
+        #{filmId,jdbcType=INTEGER},
+      </if>
+      <if test="actorId != null">
+        #{actorId,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clf.meetingfilm.backendfilm.model.MoocFilmActorT">
+    update mooc_film_actor_t
+    <set>
+      <if test="filmId != null">
+        film_id = #{filmId,jdbcType=INTEGER},
+      </if>
+      <if test="actorId != null">
+        actor_id = #{actorId,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clf.meetingfilm.backendfilm.model.MoocFilmActorT">
+    update mooc_film_actor_t
+    set film_id = #{filmId,jdbcType=INTEGER},
+      actor_id = #{actorId,jdbcType=INTEGER},
+      role_name = #{roleName,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

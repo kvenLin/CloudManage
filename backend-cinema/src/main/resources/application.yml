@@ -1,0 +1,24 @@
+server:
+  port: 8402
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+spring:
+  application:
+    name: film-service-provider #对微服务定义一个服务名称
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/meetingfilm?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+
+mybatis-plus:
+  #configuration:
+  #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #配置控制台打印sql日志
+  mapper-locations: classpath:mappers/*.xml
+  global-config:
+    db-config:
+      id-type: auto  #0:数据库ID自增
