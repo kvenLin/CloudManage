@@ -1,5 +1,5 @@
 server:
-  port: 8301
+  port: 8401
 
 eureka:
   client:
@@ -9,7 +9,7 @@ eureka:
 
 spring:
   application:
-    name: cinema-service
+    name: hall-service
   datasource:
     url: jdbc:mysql://127.0.0.1:3307/meetingfilm?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
     username: root

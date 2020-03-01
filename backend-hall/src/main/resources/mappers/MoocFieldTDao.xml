@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clf.meetingfilm.backendhall.dao.MoocFieldTDao">
+  <resultMap id="BaseResultMap" type="com.clf.meetingfilm.backendhall.model.MoocFieldT">
+    <id column="UUID" jdbcType="INTEGER" property="uuid" />
+    <result column="cinema_id" jdbcType="INTEGER" property="cinemaId" />
+    <result column="film_id" jdbcType="INTEGER" property="filmId" />
+    <result column="begin_time" jdbcType="VARCHAR" property="beginTime" />
+    <result column="end_time" jdbcType="VARCHAR" property="endTime" />
+    <result column="hall_id" jdbcType="INTEGER" property="hallId" />
+    <result column="hall_name" jdbcType="VARCHAR" property="hallName" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UUID, cinema_id, film_id, begin_time, end_time, hall_id, hall_name, price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mooc_field_t
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </select>
+  <select id="describeHalls" resultType="com.clf.meetingfilm.backendhall.vo.HallsRespVO">
+    SELECT
+          (SELECT cinema_name FROM mooc_cinema_t c WHERE c.`uuid` = fie.cinema_id) AS cinemaName,
+          fie.hall_name AS hallName,
+          (SELECT film_name FROM mooc_film_t f WHERE f.`uuid` = fie.film_id) AS filmName,
+          (SELECT show_name FROM mooc_hall_dict_t d WHERE d.`uuid` = fie.hall_id) AS hallTypeName,
+          fie.begin_time AS beginTime,
+          fie.end_time AS endTime,
+          fie.price AS filmPrice
+        FROM mooc_field_t fie
+        ${ew.customSqlSegment}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mooc_field_t
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="UUID" keyProperty="uuid" parameterType="com.clf.meetingfilm.backendhall.model.MoocFieldT" useGeneratedKeys="true">
+    insert into mooc_field_t (cinema_id, film_id, begin_time, 
+      end_time, hall_id, hall_name, 
+      price)
+    values (#{cinemaId,jdbcType=INTEGER}, #{filmId,jdbcType=INTEGER}, #{beginTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=VARCHAR}, #{hallId,jdbcType=INTEGER}, #{hallName,jdbcType=VARCHAR}, 
+      #{price,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="UUID" keyProperty="uuid" parameterType="com.clf.meetingfilm.backendhall.model.MoocFieldT" useGeneratedKeys="true">
+    insert into mooc_field_t
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cinemaId != null">
+        cinema_id,
+      </if>
+      <if test="filmId != null">
+        film_id,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="hallId != null">
+        hall_id,
+      </if>
+      <if test="hallName != null">
+        hall_name,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cinemaId != null">
+        #{cinemaId,jdbcType=INTEGER},
+      </if>
+      <if test="filmId != null">
+        #{filmId,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="hallId != null">
+        #{hallId,jdbcType=INTEGER},
+      </if>
+      <if test="hallName != null">
+        #{hallName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clf.meetingfilm.backendhall.model.MoocFieldT">
+    update mooc_field_t
+    <set>
+      <if test="cinemaId != null">
+        cinema_id = #{cinemaId,jdbcType=INTEGER},
+      </if>
+      <if test="filmId != null">
+        film_id = #{filmId,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="hallId != null">
+        hall_id = #{hallId,jdbcType=INTEGER},
+      </if>
+      <if test="hallName != null">
+        hall_name = #{hallName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clf.meetingfilm.backendhall.model.MoocFieldT">
+    update mooc_field_t
+    set cinema_id = #{cinemaId,jdbcType=INTEGER},
+      film_id = #{filmId,jdbcType=INTEGER},
+      begin_time = #{beginTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      hall_id = #{hallId,jdbcType=INTEGER},
+      hall_name = #{hallName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER}
+    where UUID = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>

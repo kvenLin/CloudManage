@@ -19,7 +19,8 @@ public enum  ErrorEnum {
     PARSE_ERROR(504, "时间转换错误"),
     ROLE_MATCH_ACT_ERROR(505, "演员和角色名数量不匹配"),
     SAVE_CINEMA_ERROR(506, "添加影院失败"),
-    PAGE_TOO_BIG(507, "nowPage太大了，不支持此处理");
+    PAGE_TOO_BIG(507, "nowPage太大了，不支持此处理"),
+    SAVE_HALL_ERROR(508, "添加影厅失败");
     private Integer code;
     private String msg;
 
