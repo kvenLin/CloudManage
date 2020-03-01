@@ -46,3 +46,21 @@
 * Eureka Server会自动更新续约更新阈值
 * 当Eureka Server续约更新频率低于阈值则进入保护模式
 * 自我保护的模式下Eureka Server不会剔除任何的注册信息
+## Ribbon负载均衡
+### 概述
+* Ribbon是**客户端**负载均衡器
+* Ribbon核心功能: 服务发现, 服务的选择规则, 服务监听
+### Ribbon的核心
+#### IRule
+* IRule通过特定的算法选取要访问的服务
+* IRule的常用的算法: BestAvailableRule, WeightedResponseTimeRule
+![](image/4362ece3.png)
+#### IPing
+* 探测服务存活状态
+* 是Ribbon保证服务可用的基石
+* 常见的实现: NIWSDiscoveryPing, PingUrl
+![](image/3dcc805a.png)
+#### ServerList
+* ServerList是Ribbon存储的可用服务列表
+* ServerList可以手动设置
+* ServerList常见应用是从Eureka中自动获取
