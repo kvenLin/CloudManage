@@ -1,0 +1,11 @@
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  global-config:
+    db-config:
+      id-type: auto  #0:数据库ID自增
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/meetingfilm?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
