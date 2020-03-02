@@ -1,4 +1,4 @@
-package com.clf.meetingfilm.backendfilm.vo;
+package com.clf.meetingfilm.backendapi.film.vo;
 
 import lombok.Data;
 

@@ -27,6 +27,10 @@
             <groupId>com.clf.meetingfilm</groupId>
             <artifactId>backend-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.clf.meetingfilm</groupId>
+            <artifactId>backend-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

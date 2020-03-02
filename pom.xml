@@ -15,12 +15,16 @@
     <name>backend-parent</name>
     <description>parent project for Spring Boot</description>
     <modules>
+        <module>backend-user</module>
+        <module>backend-cinema</module>
+        <module>backend-film</module>
+        <module>backend-hall</module>
+
+        <module>backend-api</module>
         <module>backend-common</module>
         <module>backend-utils</module>
-        <module>backend-user</module>
-        <module>backend-eureka-server</module>
         <module>backend-practice</module>
-        <module>backend-film</module>
+        <module>backend-eureka-server</module>
     </modules>
 
     <properties>
@@ -101,7 +105,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            <!-- 公共依赖 -->
             <dependency>
                 <groupId>com.clf.meetingfilm</groupId>
                 <artifactId>backend-utils</artifactId>
@@ -111,6 +115,12 @@
             <dependency>
                 <groupId>com.clf.meetingfilm</groupId>
                 <artifactId>backend-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.clf.meetingfilm</groupId>
+                <artifactId>backend-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

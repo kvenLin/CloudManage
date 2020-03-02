@@ -3,8 +3,8 @@ package com.clf.meetingfilm.backendfilm.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.clf.meetingfilm.backendapi.film.vo.DescribeFilmRespVO;
 import com.clf.meetingfilm.backendfilm.model.MoocFilmT;
-import com.clf.meetingfilm.backendfilm.vo.DescribeFilmRespVO;
 import com.clf.meetingfilm.backendfilm.vo.DescribeFilmsRespVO;
 import org.apache.ibatis.annotations.Param;
 

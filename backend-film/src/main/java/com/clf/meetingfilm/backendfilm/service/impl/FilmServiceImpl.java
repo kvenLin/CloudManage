@@ -2,6 +2,7 @@ package com.clf.meetingfilm.backendfilm.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.clf.meetingfilm.backendapi.film.vo.DescribeFilmRespVO;
 import com.clf.meetingfilm.backendfilm.dao.MoocActorTDao;
 import com.clf.meetingfilm.backendfilm.dao.MoocFilmActorTDao;
 import com.clf.meetingfilm.backendfilm.dao.MoocFilmInfoTDao;
@@ -11,7 +12,6 @@ import com.clf.meetingfilm.backendfilm.model.MoocFilmInfoT;
 import com.clf.meetingfilm.backendfilm.model.MoocFilmT;
 import com.clf.meetingfilm.backendfilm.service.FilmService;
 import com.clf.meetingfilm.backendfilm.vo.DescribeActorsRespVO;
-import com.clf.meetingfilm.backendfilm.vo.DescribeFilmRespVO;
 import com.clf.meetingfilm.backendfilm.vo.DescribeFilmsRespVO;
 import com.clf.meetingfilm.backendfilm.vo.FilmSaveReqVO;
 import com.clf.meetingfilm.backendutils.enums.ErrorEnum;

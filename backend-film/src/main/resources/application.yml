@@ -9,7 +9,7 @@ eureka:
 
 spring:
   application:
-    name: film-service-provider #对微服务定义一个服务名称
+    name: film-service #对微服务定义一个服务名称
   datasource:
     url: jdbc:mysql://127.0.0.1:3307/meetingfilm?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
     username: root
