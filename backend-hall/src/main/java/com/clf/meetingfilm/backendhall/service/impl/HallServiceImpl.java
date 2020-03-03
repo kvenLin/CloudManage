@@ -62,7 +62,7 @@ public class HallServiceImpl implements HallService {
         BaseResponseVO<DescribeFilmRespVO> baseResponseVO = filmFeignApi.describeFilmById(hallSavedReqVO.getFilmId());
         DescribeFilmRespVO filmResult = baseResponseVO.getData();
         if(filmResult == null || StringUtils.isEmpty(filmResult.getFilmId())) {
-            throw new CommonException(ErrorEnum.FILM_NOT_FUND);
+            throw new CommonException(ErrorEnum.FILM_NOT_FOUND);
         }
         MoocHallFilmInfoT hallFilmInfo = new MoocHallFilmInfoT();
         hallFilmInfo.setFilmId(ToolUtils.str2Int(filmResult.getFilmId()));

@@ -28,6 +28,23 @@
       * [降级触发原则](#降级触发原则)
       * [快速失败](#快速失败)
     * [熔断机制](#熔断机制)
+  * [Feign](#feign)
+    * [概述](#概述-2)
+    * [特性](#特性)
+    * [Feign继承](#feign继承)
+    * [面试点](#面试点)
+      * [Feign之HTTP性能优化](#feign之http性能优化)
+      * [Feign之HTTP解压缩](#feign之http解压缩)
+  * [Zuul](#zuul)
+    * [概述](#概述-3)
+    * [ZuulFilter生命周期](#zuulfilter生命周期)
+    * [自定义Filter](#自定义filter)
+    * [核心PreFilter](#核心prefilter)
+    * [核心RoutingFilter](#核心routingfilter)
+    * [核心PostFilter](#核心postfilter)
+    * [面试点](#面试点-1)
+      * [Zuul和Zuul2](#zuul和zuul2)
+      * [Cookie和头信息处理](#cookie和头信息处理)
 
 
 ## Eureka核心特性
@@ -169,3 +186,30 @@
 * HTTP的常见优化项就是数据压缩
 * Feign可以支持GZip的请求压缩
 * **注意: 解压缩是一把双刃剑, 一定要谨慎使用**
+## Zuul
+![](image/822f5b27.png)
+### 概述
+* 什么是网关: 主要是实现请求转发和请求过滤
+* Zuul是网关大军中的一员, 目前市场使用的规律比较高
+* Zuul除了请求转发和过滤, 一般还作为鉴权和容错使用
+* Zuul可以无缝衔接Ribbon和Hystrix
+### ZuulFilter生命周期
+![](image/44bcd5af.png)
+### 自定义Filter
+* 集成ZuulFilter并实现相应的方法
+* 设置Filter的类型,级别,和是否启用
+* 开发具体的业务逻辑
+### 核心PreFilter
+![](image/5450c088.png)
+### 核心RoutingFilter
+![](image/14c1e8a3.png)
+### 核心PostFilter
+![](image/81fb866e.png)
+### 面试点
+#### Zuul和Zuul2
+* Zuul使用的是阻塞式线程完成业务的调用
+* Zuul2使用的是异步线程完成业务的调用
+#### Cookie和头信息处理
+* Zuul帮我们过滤了一些非安全的信息
+* 诸如Cookie, set-Cookie和authorization等
+* 可以通过设置sensitiveHeaders来修改, 从而被其他服务获取

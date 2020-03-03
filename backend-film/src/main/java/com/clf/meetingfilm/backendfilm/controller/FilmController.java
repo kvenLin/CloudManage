@@ -27,13 +27,13 @@ public class FilmController {
     private FilmService filmService;
 
     @GetMapping("actors")
-    public BaseResponseVO describeActors(@RequestBody @Valid BasePageVO basePageVO) {
+    public BaseResponseVO describeActors(@Valid BasePageVO basePageVO) {
         IPage<DescribeActorsRespVO> actors = filmService.describeActors(basePageVO.getNowPage(), basePageVO.getPageSize());
         return BaseResponseVO.success(PageUtil.getPageResult(actors, "actors"));
     }
 
     @GetMapping("")
-    public BaseResponseVO describeFilms(@RequestBody @Valid BasePageVO basePageVO) {
+    public BaseResponseVO describeFilms(@Valid BasePageVO basePageVO) {
         IPage<DescribeFilmsRespVO> films = filmService.describeFilms(basePageVO.getNowPage(), basePageVO.getPageSize());
         return BaseResponseVO.success(PageUtil.getPageResult(films, "films"));
     }

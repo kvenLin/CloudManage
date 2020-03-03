@@ -9,10 +9,10 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.clf.meetingfilm</groupId>
-    <artifactId>backend-user</artifactId>
+    <artifactId>backend-gw-zuul</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>backend-user</name>
-    <description>user project for Spring Boot</description>
+    <name>backend-gw-zuul</name>
+    <description>getway project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -21,16 +21,25 @@
     <dependencies>
         <dependency>
             <groupId>com.clf.meetingfilm</groupId>
-            <artifactId>backend-common</artifactId>
+            <artifactId>backend-utils</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.houbb</groupId>
-            <artifactId>markdown-toc</artifactId>
-            <version>1.0.2</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         </dependency>
     </dependencies>
 

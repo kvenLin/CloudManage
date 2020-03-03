@@ -1,3 +1,10 @@
+server:
+  port: 8201
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 mybatis-plus:
   #configuration:
     #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #配置控制台打印sql日志
@@ -8,6 +15,8 @@ mybatis-plus:
 
 
 spring:
+  application:
+    name: user-service
   datasource:
     url: jdbc:mysql://127.0.0.1:3307/meetingfilm?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
     username: root

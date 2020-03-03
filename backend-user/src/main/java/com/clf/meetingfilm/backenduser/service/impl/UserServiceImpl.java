@@ -11,8 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 
 /**
  * @Author: clf
@@ -31,7 +29,7 @@ public class UserServiceImpl implements UserService {
         queryWrapper.lambda().eq(MoocBackendUserT::getUserName, username);
         MoocBackendUserT user = moocBackendUserTDao.selectOne(queryWrapper);
         if(user == null) {
-            throw new CommonException(ErrorEnum.USER_NOT_FUND);
+            throw new CommonException(ErrorEnum.USER_NOT_FOUND);
         }
         String encrypt = MD5Util.encrypt(password);
         if(!user.getUserPwd().equals(encrypt)) {

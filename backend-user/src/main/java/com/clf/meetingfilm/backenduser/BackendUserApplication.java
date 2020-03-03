@@ -3,8 +3,10 @@ package com.clf.meetingfilm.backenduser;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
+@EnableDiscoveryClient
 @SpringBootApplication
 @ComponentScan(basePackages = "com.clf.meetingfilm")
 @MapperScan(basePackages = "com.clf.meetingfilm.backenduser.dao")

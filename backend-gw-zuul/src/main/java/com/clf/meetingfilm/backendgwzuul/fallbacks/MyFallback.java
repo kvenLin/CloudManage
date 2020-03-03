@@ -1,0 +1,70 @@
+package com.clf.meetingfilm.backendgwzuul.fallbacks;
+
+import com.alibaba.fastjson.JSONObject;
+import com.clf.meetingfilm.backendutils.common.vo.BaseResponseVO;
+import com.clf.meetingfilm.backendutils.enums.ErrorEnum;
+import com.clf.meetingfilm.backendutils.exception.CommonException;
+import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.stereotype.Component;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+/**
+ * @author : clf
+ * @description : 业务降级处理
+ **/
+@Component
+public class MyFallback implements FallbackProvider {
+
+    @Override
+    public String getRoute() {
+        return "film-service";
+    }
+
+    @Override
+    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
+        return new ClientHttpResponse() {
+            @Override
+            public HttpStatus getStatusCode() throws IOException {
+                return HttpStatus.OK;
+            }
+
+            @Override
+            public int getRawStatusCode() throws IOException {
+                return 200;
+            }
+
+            @Override
+            public String getStatusText() throws IOException {
+                return "OK";
+            }
+
+            @Override
+            public void close() {
+
+            }
+
+            @Override
+            public InputStream getBody() throws IOException {
+                BaseResponseVO responseVO
+                        = BaseResponseVO.serviceException(
+                                new CommonException(ErrorEnum.NOT_FOUND));
+                String result = JSONObject.toJSONString(responseVO);
+                return new ByteArrayInputStream(result.getBytes());
+            }
+
+            @Override
+            public HttpHeaders getHeaders() {
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.APPLICATION_JSON);
+                return headers;
+            }
+        };
+    }
+}

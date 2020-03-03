@@ -20,6 +20,7 @@
         <module>backend-film</module>
         <module>backend-hall</module>
 
+        <module>backend-gw-zuul</module>
         <module>backend-api</module>
         <module>backend-common</module>
         <module>backend-utils</module>
