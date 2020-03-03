@@ -1,6 +1,11 @@
 server:
   port: 8761
-
+spring:
+  security:
+    user:
+      name: clf
+      password: clf123
+      roles: SUPERUSER
 eureka:
   instance:
     hostname: localhost
@@ -9,4 +14,4 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8761/eureka/

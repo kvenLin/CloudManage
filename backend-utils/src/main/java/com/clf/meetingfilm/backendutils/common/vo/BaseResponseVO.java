@@ -23,6 +23,14 @@ public class BaseResponseVO<T> {
     private BaseResponseVO() {
     }
 
+    // 未登录异常
+    public static<T> BaseResponseVO noLogin(){
+        BaseResponseVO response = new BaseResponseVO();
+        response.setCode(401);
+        response.setMsg("请登录");
+        return response;
+    }
+
     public static BaseResponseVO success() {
         return success(null);
     }
