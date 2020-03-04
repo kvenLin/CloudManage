@@ -1,11 +1,13 @@
 package com.clf.meetingfilm.backendgwzuul.filters;
 
 import com.alibaba.fastjson.JSONObject;
+import com.clf.meetingfilm.backendutils.common.vo.BaseResponseVO;
 import com.clf.meetingfilm.backendutils.properties.JwtProperties;
 import com.clf.meetingfilm.backendutils.util.JwtTokenUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import io.jsonwebtoken.JwtException;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
@@ -72,13 +74,36 @@ public class JWTFilter extends ZuulFilter {
             return null;
         }
 
-        //1. 验证token有效性 --> 用户是否登录过
+        // 1、验证Token有效性 -> 用户是否登录过
+        final String requestHeader = request.getHeader(jwtProperties.getHeader());
+        String authToken = null;
+        // Bearer header.payload.sign
+        if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
+            authToken = requestHeader.substring(7);
 
-        //2. 解析出JWT中的 payload --> userId - randomKey
+            //验证token是否过期,包含了验证jwt是否正确
+            try {
+                boolean flag = jwtTokenUtil.isTokenExpired(authToken);
+                if (flag) {
+                    renderJson(ctx , response, BaseResponseVO.noLogin());
+                }else{
+                    // 2、解析出JWT中的payload -> userid - randomkey
+                    String randomkey = jwtTokenUtil.getMd5KeyFromToken(authToken);
+                    String userId = jwtTokenUtil.getUsernameFromToken(authToken);
+                    // 3、是否需要验签,以及验签的算法
 
-        //3. 是否需要验签
+                    // 4、判断userid是否有效
+                    // TODO
+                }
+            } catch (JwtException e) {
+                //有异常就是token解析失败
+                renderJson(ctx ,response, BaseResponseVO.noLogin());
+            }
+        } else {
+            //header没有带Bearer字段
+            renderJson(ctx ,response, BaseResponseVO.noLogin());
+        }
 
-        //4. 判断用userId是否有效
         return null;
     }
 
